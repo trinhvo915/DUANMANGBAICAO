@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import DAO.Nhan;
 
 
-
+//<Aaaaaaaaaaa>
 public class BanChat extends JPanel implements KeyListener{
 	
 	private JTextField txtSend; 
