@@ -28,7 +28,7 @@ public class BanDanh extends JPanel implements ActionListener{
 		this.tablePanel = new JPanel();
 		this.tablePanel.setBackground(Color.orange);
 		this.tablePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		//this.tablePanel.setLayout(new TableLayOut(10, false));
+		this.tablePanel.setLayout(new TableLayOut(10, false));
 		
 		
 		this.add(cardsPanel,BorderLayout.SOUTH);

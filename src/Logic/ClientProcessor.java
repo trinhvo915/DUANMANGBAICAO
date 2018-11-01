@@ -19,8 +19,17 @@ public class ClientProcessor implements XuLy{
 
 	@Override
 	public void xuly(String data, Nhan nhan, Gui send) {
-		String key = data.substring(0, 5);
-		String code = data.substring(5);
+		String key = data.substring(0, 6);
+		String code = data.substring(6);
+		if(key.equals("S_Nhan")) { // nhan Server_Nhan
+			send.send("C_Nhan"); // gui Client Nhan
+		}else if(key.equals("S_Name")) {
+			nhan.CallBack(key, send);
+		}else if(key.equals("S_size")) {
+			System.out.println("Vi tri cua ban : "+code);
+			nhan.CallBack(data, send);
+		}
+		
 		
 		
 	}

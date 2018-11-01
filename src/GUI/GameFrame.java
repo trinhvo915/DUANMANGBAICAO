@@ -28,7 +28,14 @@ public class GameFrame extends JFrame implements Gui,Nhan{
 	
 	@Override
 	public void CallBack(String data, Object object) {
-		
+		String key = data.substring(0, 6);
+		String code = data.substring(6);
+		if(key.equals("S_Name")) {
+			connection.send("C_Name"+this.PlayerName); // C_Name = Client_Name
+		}else if(key.equals("S_size")) {
+			this.Index = Integer.parseInt(code);
+			System.out.println("Vi tri da thiet lap !!");
+		}
 		
 	}
 

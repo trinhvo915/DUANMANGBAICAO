@@ -16,8 +16,13 @@ public class ConnectedNodeProcessor implements XuLy{
 	}
 	@Override
 	public void xuly(String data, Nhan nhan, Gui send) {
-		String key = data.substring(0, 5);
-		String code = data.substring(5);
+		String key = data.substring(0, 6);
+		String code = data.substring(6);
+		if(key.equals("C_Nhan")) {// nhan tu Client
+			System.out.println("Nhan thanh cong Client !!!");
+			System.out.println("Yeu cau nhap ten !!!");
+			send.send("S_Name"); // gui Client de nhan Username Client
+		}
 		
 	}
 	@Override

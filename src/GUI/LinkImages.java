@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 public class LinkImages {
 	private static String path = "CardSuits"+File.separator;
-	private static String tyleImages = ".jpg";
+	private static String tyleImages = ".png";
 	//BufferedImage  co = ImageIO.read(new File(path))
 	// BufferedImage
 	private static BufferedImage co;
@@ -20,12 +20,12 @@ public class LinkImages {
 	
 	
 	// constructor
-	public LinkImages() throws IOException {
+	public static void LinkImagesSuit() throws IOException {
 		co = ImageIO.read(new File(path +"heart"+ tyleImages));
 		ro = ImageIO.read(new File(path +"diamond"+ tyleImages));
 		chuon = ImageIO.read(new File(path +"tref"+ tyleImages));
 		bich = ImageIO.read(new File(path +"spade"+ tyleImages));
-		this.ready = true;
+		ready = true;
 	}
 	// tao seter - getter
 	public static BufferedImage getCo() {

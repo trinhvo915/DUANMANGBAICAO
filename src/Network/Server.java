@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import DAO.Nhan;
 import GUI.CardData;
 import Logic.ConnectedNodeProcessor;
+import Logic.Logic;
 
 public class Server implements Runnable,Nhan{
 
@@ -32,8 +33,16 @@ public class Server implements Runnable,Nhan{
 	
 	@Override
 	public void CallBack(String data, Object object) {
-		String key = data.substring(0, 5);
-		String code = data.substring(5);
+		String key = data.substring(0, 6);
+		String code = data.substring(6);
+		if(key.equals("C_Name")) {
+			// nhan node cua client nao gui den
+			NodeConnection node = (NodeConnection) object;
+			// gui lai vi tri cua client ket noi
+			node.send("S_size"+connectedNodes.size());
+			Logic.sleep(1000);
+			
+		}
 		
 		
 		 	
