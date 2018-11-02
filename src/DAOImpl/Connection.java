@@ -28,7 +28,7 @@ public class Connection implements Nhan,Gui{
 		
 		this.socket = new Socket(Ip, Port);
 		this.outputStreamImpl = new OutputStreamImpl(socket);
-		this.inputSteamImpl = new InputSteamImpl(socket, nhan);
+		this.inputSteamImpl = new InputSteamImpl(socket, this);
 		// tao 2 luong gui va nhan du lieu
 		Thread outputThread = new Thread(outputStreamImpl);
 		Thread inputThread = new Thread(inputSteamImpl);

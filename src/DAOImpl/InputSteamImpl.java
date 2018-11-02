@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import DAO.Nhan;
+import Logic.Logic;
 
 public class InputSteamImpl implements Runnable{
 	private Socket connecton;
@@ -24,6 +25,7 @@ public class InputSteamImpl implements Runnable{
 				String data = dataInputStream.readUTF();
 				// trả lại 
 				nhan.CallBack(data, this);
+				Logic.sleep(1000);
 				
 			} catch (IOException e) {
 				e.printStackTrace();

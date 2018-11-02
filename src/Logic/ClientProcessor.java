@@ -36,7 +36,7 @@ public class ClientProcessor implements XuLy{
 
 	@Override
 	public void xuly(String data) {
-		xuly(data, callback, sender);
+		xuly(data, this.callback, this.sender);
 	}
 	
 
