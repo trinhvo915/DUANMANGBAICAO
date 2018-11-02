@@ -32,17 +32,15 @@ public class Server implements Runnable,Nhan{
 	
 	
 	@Override
-	public void CallBack(String data, Object object) {
+	public void CallBack(String data, Object Caller) {
 		String key = data.substring(0, 6);
 		String code = data.substring(6);
 		if(key.equals("C_Name")) {
-			System.out.println("da nhan : "+code);
 			// nhan node cua client nao gui den
-			NodeConnection node = (NodeConnection) object;
+			NodeConnection node = (NodeConnection) Caller;
 			// gui lai vi tri cua client ket noi
 			node.send("S_size"+connectedNodes.size());
 			Logic.sleep(1000);
-			System.out.println("da nhan : "+code);
 			
 		}
 		 	

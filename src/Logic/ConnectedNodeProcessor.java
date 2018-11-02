@@ -3,6 +3,7 @@ package Logic;
 import DAO.Gui;
 import DAO.Nhan;
 import DAO.XuLy;
+import Network.NodeConnection;
 
 public class ConnectedNodeProcessor implements XuLy{
 	private Nhan callback;
@@ -22,6 +23,11 @@ public class ConnectedNodeProcessor implements XuLy{
 			System.out.println("Nhan thanh cong Client !!!");
 			System.out.println("Yeu cau nhap ten !!!");
 			send.send("S_Name"); // gui Client de nhan Username Client
+		}else if(key.equals("C_Name")) {
+			((NodeConnection)send).setPlayerName(code);
+			System.out.println("Player Name : "+code);
+			nhan.CallBack(key, send);
+			
 		}
 		
 	}
