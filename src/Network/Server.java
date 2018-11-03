@@ -19,15 +19,16 @@ public class Server implements Runnable,Nhan{
 	private ArrayList<NodeConnection> connectedNodes;
 	// vi tri hien tai cua client
 	private int currentPlayer = 0;
-	
+	private int tablehead = 0;
 	
 	private CardData[] tableCards;
+	private ArrayList<Integer> gameModes; // chế độ chơi
 	public Server(int listeningPort) throws IOException {
 		
 		this.serverSocket = new ServerSocket(listeningPort);
 		this.connectedNodes = new  ArrayList<NodeConnection>();
 		this.tableCards = new CardData[4];
-		
+		this.gameModes = new ArrayList<Integer>();
 	}
 	
 	
@@ -42,9 +43,60 @@ public class Server implements Runnable,Nhan{
 			node.send("S_size"+connectedNodes.size());
 			Logic.sleep(1000);
 			
+			String S_smsC = "";
+			String inforClient = ""; // thông tin các client với vị trí,và tên client 
+			for (NodeConnection nodeClients : connectedNodes) {
+				// gui lại vị trí và tên client
+				nodeClients.send("S_indi"+connectedNodes.size()+","+node.getPlayerName());
+				// gui lại vị trí và tên client lại các client khác
+				S_smsC += nodeClients.getPlayerIndex()+","+nodeClients.getPlayerName()+"-";	
+			}
+			node.setPlayerIndex(connectedNodes.size());
+			// thêm vào mảng các node của cliet nào
+			this.connectedNodes.add(node);
+			if(connectedNodes.size() !=0) {
+				node.send("S_smsC"+S_smsC);
+			}
+			// nêu có 4 client kết nối tới thì bắt đầu chơi
+			if(connectedNodes.size() == 4)
+			{
+				Logic.sleep(1000);
+				sendToAll("_Start");
+				this.listinegFlag=false;
+				Logic.sleep(2000);
+				// chia bài 3 lá cho clients
+				ArrayList<ArrayList<CardData>> Cards = Logic.ChiaBaiChoClients();
+				
+				// gửi bộ 3 lá bài lại mỗi client
+				for(int i =0 ;i<4; i++)
+				{
+					ArrayList<CardData> clst = Cards.get(i);
+					String strCLst = Logic.arrCard(clst);
+					connectedNodes.get(i).send("3_card" + strCLst);
+				}
+
+
+				Logic.sleep(1000);
+
+				connectedNodes.get(tablehead).send("S_STH");
+				Logic.sleep(1000);
+
+				this.gameModes.add(new Integer(5));
+
+			}
+			
+			
+			
 		}
 		 	
 	}
+
+	private void sendToAll(String data) {
+		for (NodeConnection nodeClients : connectedNodes) {
+			nodeClients.send(data);
+		}
+	}
+
 
 	@Override
 	public void run() {

@@ -28,7 +28,22 @@ public class ClientProcessor implements XuLy{
 		}else if(key.equals("S_size")) {
 			System.out.println("Vi tri cua ban : "+code);
 			nhan.CallBack(data, send);
+		}else if(key.equals("S_indi")) {
+			// gui xuong GUI - gameFrame
+			nhan.CallBack(data, send);
+		}else if(key.equals("S_smsC")) {
+			String [] Clients = code.split("-");
+			for (int i = 0; i < Clients.length; i++) {
+				System.out.println(Clients[i]);
+			}
+			nhan.CallBack(data, send);
+		}else if(key.equals("_Start")) {
+			// bat đầu chơi game
+			System.out.println("Starting  Game !!!");
+		}else if(key.equals("3_card")) {
+			nhan.CallBack(data, send);
 		}
+		
 		
 		
 		

@@ -10,6 +10,7 @@ import DAO.Gui;
 import DAO.Nhan;
 import DAOImpl.Connection;
 import Logic.ClientProcessor;
+import Logic.Logic;
 
 
 
@@ -35,6 +36,27 @@ public class GameFrame extends JFrame implements Gui,Nhan{
 		}else if(key.equals("S_size")) {
 			this.Index = Integer.parseInt(code);
 			System.out.println("Vi tri da thiet lap !!");
+		}else if(key.equals("S_indi")) {
+			int index = Integer.parseInt(code.split(",")[0]);
+			String name = code.split(",")[1];
+			this.banChat.AddPlayer(name,index);
+		}else if(key.equals("S_smsC")) {
+			System.out.println("Nhan danh sach client !!");
+			String [] players = code.split("-");
+			// ban đầu có 1 client kết nối server nên server gui về sẻ ko có client đầu tiên
+			// nên bắt try catch
+			for (int i = 0; i < players.length; i++) {
+				try {
+					String name =(players[i].split(",")[1]);
+					int indx = Integer.parseInt(players[i].split(",")[0]);
+					this.banChat.AddPlayer(name, indx);
+				}catch (Exception e) {
+				}
+			}
+			// ban đâu chưa có nodeConnettion ko thêm vào nên client phải tự add vào list ds
+			this.banChat.AddPlayer(this.PlayerName, 0);
+		}else if(key.equals("3_card")){
+			this.banDanh.ShowCards(Logic.ViewsCards(code));
 		}
 		
 	}

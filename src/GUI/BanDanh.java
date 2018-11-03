@@ -58,7 +58,23 @@ public class BanDanh extends JPanel implements ActionListener{
 		}
 		
 	}
-	// lay cac the b�i
+	// hiển thị lá bài
+	
+	public void ShowCards(ArrayList<CardData> cards)
+	{
+		this.cardsPanel.removeAll();
+		this.cards = cards;
+		
+		for(CardData card : this.cards)
+		{
+			Card c = new Card(card);
+			this.cardsPanel.add(c);
+			c.addActionListener(this);
+		}
+		this.revalidate();
+	}
+	
+	// lay cac the bài
 	public ArrayList<CardData> getCards()
 	{
 		ArrayList<CardData> cards = new ArrayList<CardData>();
@@ -71,5 +87,6 @@ public class BanDanh extends JPanel implements ActionListener{
 		}
 		return cards;
 	}
+	
 
 }
