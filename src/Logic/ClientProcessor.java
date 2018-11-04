@@ -42,6 +42,9 @@ public class ClientProcessor implements XuLy{
 			System.out.println("Starting  Game !!!");
 		}else if(key.equals("3_card")) {
 			nhan.CallBack(data, send);
+		}else if (key.equals("S_CHAT"))
+		{
+			nhan.CallBack(data, sender);
 		}
 		
 		

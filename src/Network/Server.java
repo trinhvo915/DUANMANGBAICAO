@@ -58,42 +58,51 @@ public class Server implements Runnable,Nhan{
 				node.send("S_smsC"+S_smsC);
 			}
 			// nêu có 4 client kết nối tới thì bắt đầu chơi
-			if(connectedNodes.size() == 4)
-			{
-				Logic.sleep(1000);
-				sendToAll("_Start");
-				this.listinegFlag=false;
-				Logic.sleep(2000);
-				// chia bài 3 lá cho clients
-				ArrayList<ArrayList<CardData>> Cards = Logic.ChiaBaiChoClients();
-				
-				// gửi bộ 3 lá bài lại mỗi client
-				for(int i =0 ;i<4; i++)
-				{
-					ArrayList<CardData> clst = Cards.get(i);
-					String strCLst = Logic.arrCard(clst);
-					connectedNodes.get(i).send("3_card" + strCLst);
+			if(connectedNodes.size() == 4){
+				try {
+					Logic.sleep(1000);
+					sendToAll("_Start");
+					this.listinegFlag=false;
+					Logic.sleep(2000);
+					// chia bài 3 lá cho clients
+					ArrayList<ArrayList<CardData>> Cards = Logic.ChiaBaiChoClients();
+					
+					// gửi bộ 3 lá bài lại mỗi client
+					for(int i =0 ;i<4; i++)
+					{
+						ArrayList<CardData> clst = Cards.get(i);
+						String strCLst = Logic.arrCard(clst);
+						connectedNodes.get(i).send("3_card" + strCLst);
+					}
+
+
+					Logic.sleep(1000);
+
+//					connectedNodes.get(tablehead).send("S_STH");
+//					Logic.sleep(1000);
+
+					this.gameModes.add(new Integer(5));
+
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
-
-
-				Logic.sleep(1000);
-
-				connectedNodes.get(tablehead).send("S_STH");
-				Logic.sleep(1000);
-
-				this.gameModes.add(new Integer(5));
-
-			}
-			
-			
-			
+			}	
+		}else if (key.equals("C_CHAT"))
+		{
+			sendToAll("S_CHAT" + code);
+			Logic.sleep(1000);
 		}
+
 		 	
 	}
 
 	private void sendToAll(String data) {
-		for (NodeConnection nodeClients : connectedNodes) {
-			nodeClients.send(data);
+		try {
+			for (NodeConnection nodeClients : connectedNodes) {
+				nodeClients.send(data);
+			}
+		} catch (Exception e) {
+			System.out.println("Khong co client nao nhan tin");
 		}
 	}
 

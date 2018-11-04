@@ -87,7 +87,7 @@ public class BanChat extends JPanel implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == e.VK_ENTER)
 		{
-			this.nhan.CallBack("C_CHT" + txtSend.getText(), this);
+			this.nhan.CallBack("C_CHAT" + txtSend.getText(), this);
 			txtSend.setText("");
 			
 		}

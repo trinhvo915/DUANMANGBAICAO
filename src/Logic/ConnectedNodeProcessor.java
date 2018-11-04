@@ -26,8 +26,10 @@ public class ConnectedNodeProcessor implements XuLy{
 		}else if(key.equals("C_Name")) {
 			((NodeConnection)send).setPlayerName(code);
 			System.out.println("Player Name : "+code);
-			nhan.CallBack(key, send);
-			
+			nhan.CallBack(key, send);	
+		}else if(key.equals("C_CHAT")) {
+			nhan.CallBack(data, send);
+			System.out.println("Chat"+code);
 		}
 		
 	}

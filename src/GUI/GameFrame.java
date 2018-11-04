@@ -57,6 +57,13 @@ public class GameFrame extends JFrame implements Gui,Nhan{
 			this.banChat.AddPlayer(this.PlayerName, 0);
 		}else if(key.equals("3_card")){
 			this.banDanh.ShowCards(Logic.ViewsCards(code));
+		}else if(key.equals("C_CHAT")) {
+			this.connection.send("C_CHAT"+this.PlayerName+":"+code);
+			
+		}else if (key.equals("S_CHAT"))
+		{
+			System.out.println("nhan tin nhan !!");
+			this.banChat.AppendToChat(code);
 		}
 		
 	}
