@@ -58,8 +58,9 @@ public class Server implements Runnable,Nhan{
 				node.send("S_smsC"+S_smsC);
 			}
 			// nêu có 4 client kết nối tới thì bắt đầu chơi
-			if(connectedNodes.size() == 4){
-				try {
+			try {
+				if(connectedNodes.size() == 4){
+					
 					Logic.sleep(1000);
 					sendToAll("_Start");
 					this.listinegFlag=false;
@@ -82,11 +83,10 @@ public class Server implements Runnable,Nhan{
 //					Logic.sleep(1000);
 
 					this.gameModes.add(new Integer(5));
-
-				} catch (Exception e) {
-					// TODO: handle exception
 				}
-			}	
+				}	catch (Exception e) {
+				// TODO: handle exception
+			}
 		}else if (key.equals("C_CHAT"))
 		{
 			sendToAll("S_CHAT" + code);

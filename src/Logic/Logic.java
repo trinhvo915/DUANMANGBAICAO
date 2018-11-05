@@ -37,7 +37,7 @@ public class Logic {
 		
 		for(int i = 0 ; i < 4 ; i ++)
 		{
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < 13; j++) {
 				cards.add( new CardData(j+2,i+1));
 				
 			}
