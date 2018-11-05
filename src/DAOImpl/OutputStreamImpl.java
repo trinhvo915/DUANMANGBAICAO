@@ -17,8 +17,12 @@ public class OutputStreamImpl implements Runnable , Gui{
 	}
 
 	public  OutputStreamImpl(Socket  connection) throws IOException {
-		this.connection = connection;
-		dataOutputStream = new DataOutputStream(this.connection.getOutputStream());
+		try {
+			this.connection = connection;
+			dataOutputStream = new DataOutputStream(this.connection.getOutputStream());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	@Override

@@ -13,9 +13,13 @@ public class InputSteamImpl implements Runnable{
 	private DataInputStream dataInputStream;
 	
 	public  InputSteamImpl(Socket connecton,Nhan nhan) throws IOException {
-		this.connecton = connecton;
-		this.nhan = nhan;
-		this.dataInputStream = new DataInputStream(connecton.getInputStream());
+		try {
+			this.connecton = connecton;
+			this.nhan = nhan;
+			this.dataInputStream = new DataInputStream(connecton.getInputStream());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	@Override
 	public void run() {

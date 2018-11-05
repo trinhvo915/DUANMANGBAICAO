@@ -33,11 +33,19 @@ public class NodeConnection extends Connection{
 
 	@Override
 	public void CallBack(String data, Object object) {
-		this.xuLy.xuly(data, nhan, this);
+		try {
+			this.xuLy.xuly(data, nhan, this);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	@Override
 	public void send(String data) {
-		this.outputStreamImpl.send(data);
+		try {
+			this.outputStreamImpl.send(data);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 	
 	
